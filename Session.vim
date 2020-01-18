@@ -8,7 +8,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 emailformat.rb
-badd +1 emailHTMLformat_lazy.rb
+badd +3 emailHTMLformat_lazy.rb
 badd +58 emailHTMLformat.rb
 badd +1 email.rb
 argglobal
@@ -41,30 +41,6 @@ exe s:l
 normal! zt
 1
 normal! 023|
-tabedit emailHTMLformat_lazy.rb
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-if bufexists('emailHTMLformat_lazy.rb') | buffer emailHTMLformat_lazy.rb | else | edit emailHTMLformat_lazy.rb | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 15) / 31)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
-normal! 0
 tabedit email.rb
 set splitbelow splitright
 wincmd t
@@ -113,7 +89,7 @@ exe s:l
 normal! zt
 59
 normal! 0
-tabnext 1
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
