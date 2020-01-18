@@ -2,6 +2,8 @@
 
 # http://ruby-for-beginners.rubymonstas.org/exercises/mailbox.html
 # from ruby monstas exercises
+require './emailHTMLformat.rb'
+
 class Email
   attr_accessor :subject, :date, :from
   def initialize(subject, headers)
@@ -43,6 +45,16 @@ class Mailbox
     end
     @max_length
   end
+  def save(filename)
+    formatter = MailboxHtmlFormatter.new(self)
+
+    File.open(filename, "w") do |f|
+      f.write(formatter.format)
+    end
+  end
+
+
+
 end
 
 emails = [
@@ -51,6 +63,7 @@ emails = [
   Email.new('Re: Homework this week', date: '2014-12-02', from: 'Ariane')
 ]
 mailbox = Mailbox.new('Ruby Study Group', emails)
+mailbox.save("emails.hmtl")
 if $PROGRAM_NAME == __FILE__
   mailbox.emails.each do |email|
     email.show

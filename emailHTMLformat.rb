@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './email.rb'
+#require './email.rb'
 
 HEAD = "  <head>
     <style>
@@ -79,6 +79,7 @@ class MailboxHtmlFormatter
   end
 end
 
+=begin
 emails = [
   Email.new('Hello', date: '2020-01-01', from: 'Melvin'),
   Email.new('Keep on coding! :)', date: '2014-12-01', from: 'Dajana'),
@@ -88,4 +89,7 @@ mailbox = Mailbox.new('Ruby Study Group', emails)
 
 formatter = MailboxHtmlFormatter.new(mailbox)
 
+
+mailbox.save("emails.hmtl")
 puts formatter.format
+=end
